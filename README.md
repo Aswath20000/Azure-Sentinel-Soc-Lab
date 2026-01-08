@@ -99,7 +99,7 @@ This enables SOC analysts to:
 
 ---
 
-## 📊 Sentinel Workbook – Brute-Force Heat Map
+## Sentinel Workbook – Brute-Force Heat Map
 
 A Microsoft Sentinel Workbook visualizes failed Windows login attempts using a **geographic heat map**.
 
@@ -115,7 +115,7 @@ This visualization supports rapid triage and threat awareness.
 
 ---
 
-## 🚨 Sentinel Analytics Rule – Brute Force Detection
+## Sentinel Analytics Rule – Brute Force Detection
 
 A **scheduled analytics rule** is configured in Microsoft Sentinel to detect brute-force login activity.
 
@@ -130,7 +130,7 @@ A **scheduled analytics rule** is configured in Microsoft Sentinel to detect bru
 
 ---
 
-## 🧠 Custom KQL Rule Logic
+##  Custom KQL Rule Logic
 
 The core detection logic uses KQL to identify repeated authentication failures from the same IP address within a defined time window.
 
@@ -144,7 +144,7 @@ Key logic elements:
 
 ---
 
-## 🤖 Sentinel Automation Rule (SOAR Integration)
+## Sentinel Automation Rule (SOAR Integration)
 
 An **automation rule** links the analytics rule to a SOAR playbook.
 
@@ -171,6 +171,10 @@ The Azure Logic App executes the automated response workflow.
 - Increment and persist priority state
 - Send notification email
 
+![Automated Email Notification](images/Picture9.png)
+
+![Sentinel Incidents](images/Picture10.png)
+
 ![Logic App Workflow](images/Picture8.png)
 
 ---
@@ -183,12 +187,6 @@ The email includes:
 - List of blocked attacker IPs
 - Confirmation of response execution
 - Audit evidence of containment action
-
-![Automated Email Notification](images/Picture9.png)
-
-
-![Sentinel Incidents](images/Picture10.png)
-
 
 ![Automated Email Notification](images/Picture12.jpg)
 
