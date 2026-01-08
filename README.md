@@ -154,7 +154,7 @@ After malicious IP addresses are blocked at the NSG level, the Logic App sends a
 - Generated automatically for each Sentinel alert execution  
 - Serves as confirmation of containment action  
 
-![Automated Email Notification](images/Picture12.png)
+![Automated Email Notification](images/Picture12.jpg)
 
 ### Purpose
 - Provides immediate visibility into automated response actions  
