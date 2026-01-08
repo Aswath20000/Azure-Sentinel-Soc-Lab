@@ -4,7 +4,7 @@ End-to-end SOC automation project that detects brute-force login attacks using *
 
 ## Architecture Overview
 
-![Azure Sentinel SOC Automation Architecture](./architecture.png)
+![Azure Sentinel SOC Automation Architecture](./images/picture1.png)
 
 ### System Architecture
 The system architecture consists of the following components:
