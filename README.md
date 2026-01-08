@@ -175,18 +175,6 @@ The Azure Logic App executes the automated response workflow.
 
 ---
 
-## Logic App Execution Evidence
-
-Each Sentinel alert triggers a successful Logic App execution.
-
-- All runs complete successfully
-- No manual execution required
-- Fully automated containment
-
-![Logic App Run History](images/test.png)
-
----
-
 ## Automated SOC Notification
 
 Upon successful IP blocking, the Logic App sends an **automated email** to the SOC analyst.
@@ -201,16 +189,23 @@ The email includes:
 
 ![Sentinel Incidents](images/Picture10.png)
 
-Each brute-force detection results in a Sentinel incident.
 
-Incident properties:
-- **Severity:** Medium
-- **Provider:** Microsoft Sentinel
-- **Source:** Custom analytics rule
-- **Status:** Automatically generated
-
+![Automated Email Notification](images/Picture12.jpg)
 
 ---
+
+## Logic App Execution Evidence
+
+Each Sentinel alert triggers a successful Logic App execution.
+
+- All runs complete successfully
+- No manual execution required
+- Fully automated containment
+
+![Logic App Run History](images/test.png)
+
+---
+
 
 ## End-to-End SOC Workflow Summary
 
@@ -251,7 +246,7 @@ Incident properties:
 
 ---
 
-## ⚙️ Logic App Implementation Details
+## Logic App Implementation Details
 
 - **Trigger:** Microsoft Sentinel alert trigger  
 - **Blob Read:** Reads `priority.json` from Azure Blob Storage  
@@ -268,26 +263,8 @@ Incident properties:
 - **Notification:** Sends Outlook email containing blocked IP details  
 
 ---
-## 📧 Automated Email Notification (SOAR Output)
 
-After malicious IP addresses are blocked at the NSG level, the Logic App sends an **automated email notification** to the SOC analyst.
-
-### Email Contents
-- List of all blocked attacker IP addresses  
-- Generated automatically for each Sentinel alert execution  
-- Serves as confirmation of containment action  
-
-![Automated Email Notification](images/Picture12.jpg)
-
-### Purpose
-- Provides immediate visibility into automated response actions  
-- Acts as an audit trail for SOC activity  
-- Confirms successful execution of the SOAR playbook  
-
----
-
-
-## 🎯 Outcome
+## Outcome
 - Automated detection and containment of brute-force attacks  
 - Network-level blocking with no manual SOC intervention  
 - Demonstrates real-world **SIEM + SOAR integration**  
