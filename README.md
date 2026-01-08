@@ -79,38 +79,163 @@ This enables:
 
 ---
 
-## 🔍 Log Analytics & KQL
-Failed login events are queried and processed using **Kusto Query Language (KQL)**.  
-The query extracts attacker IPs, calculates failure counts, and enriches data with geolocation.
+## 🔍 Log Analytics & KQL (SOC Log Analysis)
 
-![Log Analytics Query](images/custom.png)
+Windows authentication failures are collected in the Log Analytics Workspace and queried using **Kusto Query Language (KQL)**.
+
+The query focuses on:
+- **SecurityEvent** table  
+- **Event ID 4625** (failed logon)  
+- Extraction of attacker IP addresses  
+- Aggregation of failure counts  
+- Geolocation enrichment using IP data  
+
+![Log Analytics KQL Query](images/custom.png)
+
+This enables SOC analysts to:
+- Identify brute-force patterns
+- Attribute activity to source IPs
+- Enrich events with geographic context
 
 ---
 
-## 📊 Sentinel Workbook
-A Microsoft Sentinel Workbook is used to visualize failed login activity using a **geographic heat map**, enabling rapid identification of attack sources.
+## 📊 Sentinel Workbook – Brute-Force Heat Map
+
+A Microsoft Sentinel Workbook visualizes failed Windows login attempts using a **geographic heat map**.
+
+Features:
+- IP-to-location mapping
+- Bubble size based on failure volume
+- Color-coded severity indicators
+- Near real-time visibility of attack sources
 
 ![Sentinel Workbook Heat Map](images/KQL-Heatmap.png)
 
----
-
-## 🚨 Sentinel Analytics Rules
-Custom analytics rules are configured in Microsoft Sentinel to detect brute-force login attempts.
-
-- Based on **Event ID 4625**
-- Threshold-based detection
-- Mapped to **MITRE ATT&CK – Credential Access (T1110)**
-
-![Sentinel Analytics Rules](images/sentinel-analytics-rules.png)
+This visualization supports rapid triage and threat awareness.
 
 ---
 
-## 🧠 Custom Brute-Force Detection Rule
-A custom KQL rule identifies repeated failed authentication attempts from the same source IP within a defined time window.
+## 🚨 Sentinel Analytics Rule – Brute Force Detection
 
-![Brute Force Detection Rule](images/brute-force-rule.png)
+A **scheduled analytics rule** is configured in Microsoft Sentinel to detect brute-force login activity.
+
+### Detection Characteristics
+- Data Source: Windows Security Logs
+- Event ID: **4625**
+- Aggregation by attacker IP
+- Time-based thresholding
+- Automatic alert generation
+
+![Sentinel Analytics Rule Configuration](images/Picture5.png)
 
 ---
+
+## 🧠 Custom KQL Rule Logic
+
+The core detection logic uses KQL to identify repeated authentication failures from the same IP address within a defined time window.
+
+Key logic elements:
+- IP extraction from `IpAddress`
+- Failure count summarization
+- Threshold enforcement
+- Entity mapping for IP addresses
+
+![Custom Brute Force KQL Rule](images/Picture6.png)
+
+---
+
+## 🤖 Sentinel Automation Rule (SOAR Integration)
+
+An **automation rule** links the analytics rule to a SOAR playbook.
+
+Configuration:
+- **Trigger:** When alert is created
+- **Condition:** Analytics rule name contains *Detect Brute Force windows*
+- **Action:** Run Logic App playbook
+- **Status:** Enabled
+
+![Sentinel Automation Rule](images/Picture7.png)
+
+This ensures immediate response without analyst intervention.
+
+---
+
+## ⚙️ Logic App – SOAR Playbook Design
+
+The Azure Logic App executes the automated response workflow.
+
+### Key Actions
+- Parse IP entities from Sentinel alert
+- Read last-used NSG priority from Blob Storage
+- Create NSG deny rules for attacker IPs
+- Increment and persist priority state
+- Send notification email
+
+![Logic App Workflow](images/Picture8.png)
+
+---
+
+## 🔁 Logic App Execution Evidence
+
+Each Sentinel alert triggers a successful Logic App execution.
+
+- All runs complete successfully
+- No manual execution required
+- Fully automated containment
+
+![Logic App Run History](images/test.png)
+
+---
+
+## 📧 Automated SOC Notification
+
+Upon successful IP blocking, the Logic App sends an **automated email** to the SOC analyst.
+
+The email includes:
+- List of blocked attacker IPs
+- Confirmation of response execution
+- Audit evidence of containment action
+
+![Automated Email Notification](images/Picture9.png)
+
+---
+
+## 🚨 Sentinel Incidents
+
+Each brute-force detection results in a Sentinel incident.
+
+Incident properties:
+- **Severity:** Medium
+- **Provider:** Microsoft Sentinel
+- **Source:** Custom analytics rule
+- **Status:** Automatically generated
+
+![Sentinel Incidents](images/Picture10.png)
+
+---
+
+## ✅ End-to-End SOC Workflow Summary
+
+1. Windows VM generates failed login events (Event ID 4625)  
+2. Logs are ingested into Log Analytics via DCR  
+3. KQL analytics rule detects brute-force activity  
+4. Sentinel generates an alert and incident  
+5. Automation rule triggers the SOAR playbook  
+6. Logic App blocks attacker IPs at NSG level  
+7. SOC analyst receives automated email notification  
+
+---
+
+## 🎯 SOC Capabilities Demonstrated
+
+- Centralized log collection  
+- KQL-based threat detection  
+- SIEM alerting and incident creation  
+- SOAR automation with Logic Apps  
+- Network-level containment using NSGs  
+- Analyst notification and audit trail  
+- Threat visualization via Sentinel Workbooks  
+
 
 ## 🔄 Detection & Response Workflow
 
