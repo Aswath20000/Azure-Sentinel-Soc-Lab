@@ -175,7 +175,7 @@ The Azure Logic App executes the automated response workflow.
 
 ---
 
-## 🔁 Logic App Execution Evidence
+## Logic App Execution Evidence
 
 Each Sentinel alert triggers a successful Logic App execution.
 
@@ -187,7 +187,7 @@ Each Sentinel alert triggers a successful Logic App execution.
 
 ---
 
-## 📧 Automated SOC Notification
+## Automated SOC Notification
 
 Upon successful IP blocking, the Logic App sends an **automated email** to the SOC analyst.
 
@@ -198,9 +198,8 @@ The email includes:
 
 ![Automated Email Notification](images/Picture9.png)
 
----
 
-## 🚨 Sentinel Incidents
+![Sentinel Incidents](images/Picture10.png)
 
 Each brute-force detection results in a Sentinel incident.
 
@@ -210,11 +209,10 @@ Incident properties:
 - **Source:** Custom analytics rule
 - **Status:** Automatically generated
 
-![Sentinel Incidents](images/Picture10.png)
 
 ---
 
-## ✅ End-to-End SOC Workflow Summary
+## End-to-End SOC Workflow Summary
 
 1. Windows VM generates failed login events (Event ID 4625)  
 2. Logs are ingested into Log Analytics via DCR  
@@ -226,7 +224,7 @@ Incident properties:
 
 ---
 
-## 🎯 SOC Capabilities Demonstrated
+## SOC Capabilities Demonstrated
 
 - Centralized log collection  
 - KQL-based threat detection  
@@ -237,7 +235,7 @@ Incident properties:
 - Threat visualization via Sentinel Workbooks  
 
 
-## 🔄 Detection & Response Workflow
+## Detection & Response Workflow
 
 1. Failed login attempts (Event ID 4625) are generated on the Windows VM  
 2. Logs are forwarded to the Log Analytics Workspace via DCR  
