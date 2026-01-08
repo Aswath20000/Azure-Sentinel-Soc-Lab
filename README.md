@@ -48,7 +48,7 @@ Two Azure virtual machines are deployed to simulate attack targets:
 - **Windows VM** – Generates failed login events (Event ID 4625)  
 - **Linux VM** – Sends Syslog data for centralized monitoring  
 
-![Azure Virtual Machines](images/Picture2.png)
+![Azure Virtual Machines](images/Vm.png)
 
 ---
 
