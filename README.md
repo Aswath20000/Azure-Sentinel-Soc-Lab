@@ -58,7 +58,7 @@ Dedicated Data Collection Rules are configured to ensure correct log ingestion:
 - **Windows VM** → Windows Event Logs  
 - **Linux VM** → Syslog  
 
-![Data Collection Rules](images/Picture3.png)
+![Data Collection Rules](images/dcr.png)
 
 ---
 ## 📡 SOC Log Collection
@@ -83,14 +83,14 @@ This enables:
 Failed login events are queried and processed using **Kusto Query Language (KQL)**.  
 The query extracts attacker IPs, calculates failure counts, and enriches data with geolocation.
 
-![Log Analytics Query](images/log-analytics-query.png)
+![Log Analytics Query](images/custom.png)
 
 ---
 
 ## 📊 Sentinel Workbook
 A Microsoft Sentinel Workbook is used to visualize failed login activity using a **geographic heat map**, enabling rapid identification of attack sources.
 
-![Sentinel Workbook Heat Map](images/sentinel-workbook-map.png)
+![Sentinel Workbook Heat Map](images/KQL-Heatmap.png)
 
 ---
 
