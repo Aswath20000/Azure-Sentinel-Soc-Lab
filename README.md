@@ -48,7 +48,7 @@ Two Azure virtual machines are deployed to simulate attack targets:
 - **Windows VM** – Generates failed login events (Event ID 4625)  
 - **Linux VM** – Sends Syslog data for centralized monitoring  
 
-![Azure Virtual Machines](images/vm-overview.png)
+![Azure Virtual Machines](images/Picture2.png)
 
 ---
 
@@ -58,7 +58,7 @@ Dedicated Data Collection Rules are configured to ensure correct log ingestion:
 - **Windows VM** → Windows Event Logs  
 - **Linux VM** → Syslog  
 
-![Data Collection Rules](images/dcr-config.png)
+![Data Collection Rules](images/Picture3.png)
 
 ---
 
