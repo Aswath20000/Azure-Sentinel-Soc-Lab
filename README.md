@@ -39,7 +39,7 @@ The system architecture consists of the following components:
 - Kusto Query Language (KQL)
 
 ## Use Case
-Automated detection and containment of brute-force attacks at the network layer, reducing manual SOC effort and response.
+Automated detection and network-level containment of brute-force attacks.
 ---
 
 ## 🖥️ Virtual Machines
