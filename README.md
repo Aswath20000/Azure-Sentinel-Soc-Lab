@@ -61,6 +61,23 @@ Dedicated Data Collection Rules are configured to ensure correct log ingestion:
 ![Data Collection Rules](images/Picture3.png)
 
 ---
+## 📡 SOC Log Collection
+
+All security-relevant logs are centrally collected to support SOC monitoring and investigation.
+
+### Windows Security Logs
+- Failed authentication events (**Event ID 4625**) are generated on the Windows VM  
+- Logs are collected using **Data Collection Rules (DCRs)**  
+- Events are ingested into the **Log Analytics Workspace** for analysis and correlation  
+
+![Windows Security Log Collection](images/Picture4.png)
+
+This enables:
+- Detection of brute-force login attempts  
+- Historical analysis of authentication failures  
+- Correlation with other security data sources in Sentinel  
+
+---
 
 ## 🔍 Log Analytics & KQL
 Failed login events are queried and processed using **Kusto Query Language (KQL)**.  
@@ -128,6 +145,24 @@ A custom KQL rule identifies repeated failed authentication attempts from the sa
 - **Notification:** Sends Outlook email containing blocked IP details  
 
 ---
+## 📧 Automated Email Notification (SOAR Output)
+
+After malicious IP addresses are blocked at the NSG level, the Logic App sends an **automated email notification** to the SOC analyst.
+
+### Email Contents
+- List of all blocked attacker IP addresses  
+- Generated automatically for each Sentinel alert execution  
+- Serves as confirmation of containment action  
+
+![Automated Email Notification](images/Picture12.png)
+
+### Purpose
+- Provides immediate visibility into automated response actions  
+- Acts as an audit trail for SOC activity  
+- Confirms successful execution of the SOAR playbook  
+
+---
+
 
 ## 🎯 Outcome
 - Automated detection and containment of brute-force attacks  
