@@ -227,21 +227,6 @@ Each Sentinel alert triggers a successful Logic App execution.
 - Analyst notification and audit trail  
 - Threat visualization via Sentinel Workbooks  
 
-
-## Detection & Response Workflow
-
-1. Failed login attempts (Event ID 4625) are generated on the Windows VM  
-2. Logs are forwarded to the Log Analytics Workspace via DCR  
-3. Microsoft Sentinel analytics rule detects brute-force behavior  
-4. An alert is triggered with attacker IPs in the **Entities** field  
-5. The Azure Logic App is invoked automatically  
-6. For each attacker IP:
-   - The last NSG rule priority is read from Blob Storage  
-   - A new NSG deny rule is created with an incremented priority  
-   - The blocked IP is appended to a report  
-7. The updated priority value is written back to Blob Storage  
-8. An email notification is sent listing all blocked IPs  
-
 ---
 
 ## Logic App Implementation Details
